@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue reactiviry</title>
+    <script src="main.js"></script>
+</head>
+<body>
+    <h3>TO UPPER CASE</h3>
+    input: <input id="input" type="text">
+    <br>
+    result: <span id="result"></span>
+
+    <script>
+        const inputEl = document.getElementById('input')
+        const resultEl = document.getElementById('result')
+
+        const input = ref('')
+        const result = computed(() => {
+            return input.value.toUpperCase()
+        })
+
+        inputEl.addEventListener('input', (e) => {
+            input.value = e.target.value
+        })
+
+        watch(result, (newValue, oldValue) => {
+            console.log(newValue, oldValue)
+            resultEl.innerText = newValue
+        })
+    </script>
+</body>
+</html>
